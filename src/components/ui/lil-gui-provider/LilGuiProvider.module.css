@@ -1,0 +1,60 @@
+.LilContainer {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 9000;
+
+	* {
+		/* color: var(--accent-12); */
+		--title-background-color: var(--accent-3);
+		--title-text-color: var(--accent-12);
+
+		--background-color: var(--accent-1);
+		--text-color: var(--accent-12);
+		--widget-color: var(--accent-3);
+
+		--hover-color: var(--accent-4);
+		--focus-color: var(--accent-5);
+		--number-color: var(--accent-12);
+		--string-color: var(--accent-2);
+		--text-color: var(--color-surface);
+		--font-family: var(--default-font-family);
+		--font-family-mono: var(--code-font-family);
+		font-family: var(--code-font-family);
+		font-size: var(--font-size);
+		line-height: 1;
+		font-weight: inherit;
+		font-style: normal;
+		text-align: left;
+		--background-color: var(--accent-surface);
+		--text-color: var(--accent-12);
+		--title-background-color: var(--accent-3);
+		--title-text-color: var(--accent-12);
+
+		/* --widget-color: var(-accent-a11);
+		--hover-color: #4f4f4f;
+		--focus-color: #595959;
+		--number-color: #ff2c2c;
+		--string-color: #a2db3c; */
+		--font-size: 10px;
+		--input-font-size: 11px;
+		/* --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+			sans-serif; */
+		/* --font-family-mono: Menlo, Monaco, Consolas, "Droid Sans Mono", monospace; */
+		/*--padding: 4px;
+		--spacing: 4px;
+		--widget-height: 20px;
+		--title-height: calc(var(--widget-height) + var(--spacing) * 1.25);
+		--name-width: 45%;
+		--slider-knob-width: 2px;
+		--slider-input-width: 27%;
+		--color-input-width: 27%;
+		--slider-input-min-width: 45px;
+		--color-input-min-width: 45px;
+		--folder-indent: 7px;
+		--widget-padding: 0 0 0 3px;
+		--widget-border-radius: 2px;
+		--checkbox-size: calc(0.75 * var(--widget-height));
+		--scrollbar-width: 5px; */
+	}
+}

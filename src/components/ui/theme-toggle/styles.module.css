@@ -1,0 +1,44 @@
+.Root {
+	all: unset;
+	width: 42px;
+	height: 25px;
+	background-color: var(--black-a6);
+	border: 1px solid var(--accent-5);
+	border-radius: 9999px;
+	position: relative;
+	color: var(--black-a12);
+	transition: transform 600ms ease-in-out, border-color 300ms ease-in-out;
+	cursor: pointer;
+	&:focus {
+		border: 1px solid var(--accent-indicator);
+	}
+
+	&[data-state="checked"] {
+		background-color: var(--accent-indicator);
+		border: 1px solid var(--accent-indicator);
+	}
+}
+
+.Thumb {
+	align-items: center;
+	background-color: white;
+	border-radius: 9999px;
+	color: var(--black-a8);
+	display: flex;
+	height: 24px;
+	justify-content: center;
+	transform: translateX(1px);
+	transition: transform 100ms ease-in-out;
+	width: 24px;
+	will-change: transform;
+	&[data-state="checked"] {
+		background-color: var(--black-a8);
+		color: var(--gray-contrast);
+		transform: translateX(18px);
+	}
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+}

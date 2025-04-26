@@ -1,0 +1,53 @@
+name: Build and deploy
+description: This will build and deploy this to github pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checkout the current repository which has markdown files / images etc
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                path: main
+
+              # Install dependencies
+            - name: Install dependencies
+              working-directory: ${{ github.workspace }}
+              run: npm ci
+            
+              # Build the  app 
+            - name: Build app
+              env:
+                  VITE_BASE_URL: /template-repo/
+              working-directory: ${{ github.workspace }}
+              run: npm run build:github-pages
+
+            # disable jekyll
+            - name: Disable Jekyll on GitHub Pages
+              working-directory: ${{ github.workspace }}
+              run: touch .nojekyll
+            
+            # Configure GitHub Pages
+            - name: Setup Pages
+              uses: actions/configure-pages@v5
+                
+            # Upload the built site as an artifact for GitHub Pages
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                path: ${{ github.workspace }}/dist  # Path to your built site
+            
+            # Deploy to GitHub Pages
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
