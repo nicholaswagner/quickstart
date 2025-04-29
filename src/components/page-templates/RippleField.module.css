@@ -1,0 +1,83 @@
+.root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* HUD sits over the canvas but never eats pointer events — the field needs the
+   cursor for the ripple origin. */
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 4vw, 3.5rem);
+  font-family: var(--code-font-family);
+}
+
+.tag {
+  font-size: var(--font-size-1);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-11);
+}
+
+.cursor {
+  margin-left: 0.35em;
+  color: var(--accent-9);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.title {
+  margin: 0.4rem 0 0;
+  font-size: clamp(2.5rem, 9vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: lowercase;
+  color: var(--gray-12);
+  text-shadow: 0 2px 30px var(--color-background);
+}
+
+.accentBar {
+  width: 3.5rem;
+  height: 2px;
+  margin-top: 1rem;
+  background: var(--accent-9);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: var(--font-size-1);
+  letter-spacing: 0.05em;
+  color: var(--gray-11);
+}
+
+.kbd {
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--gray-6);
+  border-radius: var(--radius-2);
+  color: var(--accent-11);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}

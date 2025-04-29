@@ -1,42 +1,58 @@
 import { Moon, Sun } from "lucide-react";
 import { Switch } from "radix-ui";
-import { forwardRef } from "react";
-import { useTheme } from "../ThemeContext";
-import styles from "./styles.module.css";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
-interface ThemeToggleProps
-	extends React.ComponentPropsWithoutRef<typeof Switch.Root> {
-	checked: boolean;
-	onCheckedChange: (checked: boolean) => void;
-}
+import { useTheme } from "../ThemeContext/ThemeContext";
+import styles from "./ThemeToggle.module.css";
 
-export const ThemeToggle = forwardRef<HTMLButtonElement, ThemeToggleProps>(
-	({ checked, onCheckedChange, ...props }, ref) => {
-		const { toggleTheme } = useTheme();
+type ThemeToggleProps = React.ComponentPropsWithoutRef<typeof Switch.Root>;
 
-		const handleChange = (value: boolean) => {
-			if (value !== checked) {
-				toggleTheme();
-				onCheckedChange(value);
-			}
-		};
+// Reads the appearance directly from ThemeContext so the switch stays in sync
+// no matter what flips it — this toggle, or the lil-gui Theme picker.
+export const ThemeToggle = forwardRef<HTMLButtonElement, ThemeToggleProps>((props, ref) => {
+    const { theme, toggleTheme } = useTheme();
+    // const checked = theme === "dark";
 
-		return (
-			<Switch.Root
-				checked={checked}
-				className={styles.Root}
-				onCheckedChange={handleChange}
-				ref={ref}
-				{...props}
-			>
-				<Switch.Thumb className={styles.Thumb}>
-					{checked ? (
-						<Moon strokeWidth={2} size={14} />
-					) : (
-						<Sun strokeWidth={2} size={14} />
-					)}
-				</Switch.Thumb>
-			</Switch.Root>
-		);
-	},
-);
+    const themeChecked = theme === "dark";
+    const [checked, setChecked] = useState(themeChecked);
+    const timeoutRef = useRef<ReturnType<typeof window.setTimeout> | undefined>(undefined);
+
+    useEffect(() => {
+        setChecked(themeChecked);
+    }, [themeChecked]);
+
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                window.clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
+
+    const handleCheckedChange = (nextChecked: boolean) => {
+        setChecked(nextChecked); // animate immediately
+        if (timeoutRef.current) {
+            window.clearTimeout(timeoutRef.current);
+        }
+        timeoutRef.current = window.setTimeout(() => {
+            toggleTheme(); // change theme later
+            timeoutRef.current = undefined;
+        }, 400);
+    };
+
+    return (
+        <Switch.Root
+            checked={checked}
+            className={styles.Root}
+            onCheckedChange={handleCheckedChange}
+            ref={ref}
+            aria-label="Toggle theme"
+            {...props}
+        >
+            <Switch.Thumb className={styles.Thumb}>
+                {checked ? <Moon strokeWidth={2} size={14} /> : <Sun strokeWidth={2} size={14} />}
+            </Switch.Thumb>
+        </Switch.Root>
+    );
+
+});

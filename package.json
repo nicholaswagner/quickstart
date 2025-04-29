@@ -1,27 +1,53 @@
 {
-	"name": "bootstrap",
-	"private": true,
-	"version": "0.1.0",
+	"name": "Quickstart",
+	"version": "0.4.0",
+	"keywords": [
+		"react",
+		"typescript",
+		"vite",
+		"tanstack-router",
+		"tanstack-query",
+		"radix-ui",
+		"radix-ui/themes"
+	],
 	"author": "nicholaswagner",
 	"type": "module",
+	"license": "MIT",
+	"config": {
+		"last_modified": 1781544037
+	},
+	"engines": {
+		"node": ">=22.18.0",
+		"npm": ">=11.10.0"
+	},
+	"homepage": "https://github.com/nicholaswagner/quickstart",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/nicholaswagner/quickstart.git"
 	},
 	"scripts": {
+		"postinstall": "node scripts/install-hooks.ts || true",
+		"format": "oxfmt . --write",
+		"format:check": "oxfmt . --check",
+		"lint": "oxlint .",
+		"lint:fix": "oxlint . --fix",
 		"check": "tsc --noEmit",
 		"dev": "vite",
 		"build": "tsc --noEmit && vite build",
-		"build:gh-pages": "vite build && cp dist/index.html dist/404.html",
+		"build:gh-pages": "tsc --noEmit && vite build && cp dist/index.html dist/404.html",
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@radix-ui/themes": "^3.2.1",
+		"@gsap/react": "^2.1.2",
+		"@radix-ui/themes": "^3.3.0",
 		"@react-three/drei": "^10.0.7",
 		"@react-three/fiber": "^9.1.2",
+		"@tanstack/react-query": "^5.101.0",
 		"@tanstack/react-router-devtools": "^1.117.0",
 		"@types/node": "^22.15.3",
 		"@types/three": "^0.176.0",
+		"clsx": "^2.1.1",
+		"gsap": "^3.15.0",
 		"lil-gui": "^0.20.0",
 		"lucide-react": "^0.503.0",
 		"react": "^19.1.0",
@@ -29,15 +55,18 @@
 		"three": "^0.176.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
 		"@radix-ui/colors": "^3.0.0",
 		"@tanstack/react-router": "^1.117.0",
 		"@tanstack/router-plugin": "^1.117.0",
 		"@types/react": "^19.1.2",
 		"@types/react-dom": "^19.1.2",
-		"@vitejs/plugin-react": "^4.3.4",
+		"@vitejs/plugin-react": "^6.0.2",
+		"concurrently": "^10.0.3",
 		"globals": "^16.0.0",
+		"oxfmt": "^0.52.0",
+		"oxlint": "^1.67.0",
 		"typescript": "^5.8.3",
-		"vite": "^6.3.2"
+		"vite": "^8.0.16",
+		"vite-plugin-glsl": "^1.4.1"
 	}
 }

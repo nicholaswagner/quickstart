@@ -8,81 +8,95 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as RouteImport } from './routes/_'
+import { Route as TemplatesSplatRouteImport } from './routes/templates/$'
+import { Route as SplatRouteImport } from './routes/_.$'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SplatImport } from './routes/$'
-
-// Create/Update Routes
-
-const SplatRoute = SplatImport.update({
+const Route = RouteImport.update({
+  id: '/_',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesSplatRoute = TemplatesSplatRouteImport.update({
+  id: '/templates/$',
+  path: '/templates/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => Route,
 } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof RouteWithChildren
+  '/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof RouteWithChildren
+  '/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/_': typeof RouteWithChildren
+  '/_/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/$' | '/templates/$'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/$' | '/templates/$'
+  id: '__root__' | '/_' | '/_/$' | '/templates/$'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  Route: typeof RouteWithChildren
+  TemplatesSplatRoute: typeof TemplatesSplatRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/$': {
-      id: '/$'
+    '/_': {
+      id: '/_'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates/$': {
+      id: '/templates/$'
+      path: '/templates/$'
+      fullPath: '/templates/$'
+      preLoaderRoute: typeof TemplatesSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_/$': {
+      id: '/_/$'
       path: '/$'
       fullPath: '/$'
-      preLoaderRoute: typeof SplatImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof SplatRouteImport
+      parentRoute: typeof Route
     }
   }
 }
 
-// Create and export the route tree
-
-export interface FileRoutesByFullPath {
-  '/$': typeof SplatRoute
-}
-
-export interface FileRoutesByTo {
-  '/$': typeof SplatRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/$': typeof SplatRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/$'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/$'
-  id: '__root__' | '/$'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
+interface RouteChildren {
   SplatRoute: typeof SplatRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {
+const RouteChildren: RouteChildren = {
   SplatRoute: SplatRoute,
 }
 
-export const routeTree = rootRoute
+const RouteWithChildren = Route._addFileChildren(RouteChildren)
+
+const rootRouteChildren: RootRouteChildren = {
+  Route: RouteWithChildren,
+  TemplatesSplatRoute: TemplatesSplatRoute,
+}
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/$"
-      ]
-    },
-    "/$": {
-      "filePath": "$.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

@@ -1,0 +1,11 @@
+.modified {
+  background-color: var(--gray-a4);
+  color: var(--gray-12);
+  font-family: var(--code-font-family);
+  font-size: calc(var(--font-size-1) * 0.75);
+  font-weight: var(--font-weight-light);
+  letter-spacing: 0.1em;
+  padding: .5em;
+  text-transform: uppercase;
+  width: min-content;
+}

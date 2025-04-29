@@ -1,0 +1,53 @@
+.packageDetails {
+  align-items: center;
+  justify-items: center;
+  height: auto;
+  pointer-events: none;
+
+  .detail {
+    &>span {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    &>span:last-child {
+      padding-bottom: 1rem;
+    }
+
+    &>span:first-child {
+      padding-top: 1rem;
+      color: var(--gray-10);
+      font-family: var(--code-font-family);
+      text-transform: uppercase;
+      font-size: calc(var(--font-size-1) * 0.8);
+      letter-spacing: 0.2em;
+    }
+  }
+}
+
+.mono {
+  font-family: var(--code-font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: calc(var(--font-size-1) * 0.8);
+
+}
+
+.dependenciesLayout {
+  align-items: start;
+  grid-template-columns: auto 1fr 1fr auto;
+  grid-template-rows: min-content;
+}
+
+.tag {
+  background-color: var(--gray-4);
+  color: var(--gray-12);
+  padding: .5em;
+  font-family: var(--code-font-family);
+  font-weight: var(--font-weight-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: calc(var(--font-size-1) * 0.8);
+  pointer-events: none;
+
+}

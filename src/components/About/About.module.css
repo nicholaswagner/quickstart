@@ -1,0 +1,16 @@
+.about {
+  background: 
+  radial-gradient(300% 300% at 30% 20%, var(--gray-3), transparent 70%),
+  linear-gradient(0deg,var(--accent-3) 0%, var(--gray-3) 100%);
+
+  text-align:justify;
+  overflow-wrap: anywhere;
+  padding: 2rem;
+  
+  h1 {
+    word-wrap: normal;
+    overflow-wrap:normal;
+    letter-spacing: -0.03em;
+    line-height: -1%;
+  }
+}

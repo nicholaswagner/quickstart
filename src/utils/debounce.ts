@@ -1,4 +1,4 @@
-// biome-ignore lint/suspicious/noExplicitAny: <trying to type this any further makes my head hurt.  any it is.>
+// trying to type this any further makes my head hurt. any it is.
 export function debounce<T extends (...args: any[]) => void>(
 	func: T,
 	wait: number,

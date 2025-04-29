@@ -1,70 +1,137 @@
+import { Badge, Flex, Grid, Link, Separator, Table, Text } from "@radix-ui/themes";
+import { ReactNode } from "react";
+
 import {
-	Badge,
-	Flex,
-	Grid,
-	Heading,
-	Link,
-	Separator,
-	Table,
-	Text,
-} from "@radix-ui/themes";
-
-import { dependencies, devDependencies, repository } from "../../package.json";
-
+    config,
+    keywords,
+    dependencies,
+    devDependencies,
+    license,
+    version,
+} from "../../package.json";
+import { BrandMark } from "./Brandmark";
+import styles from "./PackageDetails.module.css";
 const deps = Object.keys(dependencies);
 const devDeps = Object.keys(devDependencies);
-const gitRepoUrl = repository.url.slice(4).replace(".git", "");
+const last_updated = config.last_modified;
+const last_updated_date = new Date(last_updated * 1000).toLocaleDateString();
+
+const tags = keywords.map((k) => (
+    <Badge key={k} radius="none" className={styles.tag} size="3">
+        {k}
+    </Badge>
+));
 
 export const PackageDetails = () => {
-	const buildTable = (title: string, data: string[]) => (
-		<Table.Root size="1">
-			<Table.Header>
-				<Table.Row>
-					<Table.ColumnHeaderCell>
-						<Badge>{title}</Badge>
-					</Table.ColumnHeaderCell>
-				</Table.Row>
-			</Table.Header>
-			<Table.Body>
-				{data.map((item) => (
-					<Table.Row key={item}>
-						<Table.RowHeaderCell>
-							<Text>{item}</Text>
-						</Table.RowHeaderCell>
-					</Table.Row>
-				))}
-			</Table.Body>
-		</Table.Root>
-	);
+    const buildTable = (title: string, data: string[]) => (
+        <Table.Root size="1">
+            <Table.Header>
+                <Table.Row>
+                    <Table.ColumnHeaderCell>{title}</Table.ColumnHeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                {data.map((item) => (
+                    <Table.Row key={item}>
+                        <Table.RowHeaderCell>
+                            <Text
+                                weight="light"
+                                className={styles.mono}
+                                style={{ color: "var(--grey-11)" }}
+                            >
+                                {item}
+                            </Text>
+                        </Table.RowHeaderCell>
+                    </Table.Row>
+                ))}
+            </Table.Body>
+        </Table.Root>
+    );
 
-	return (
-		<Grid columns={{ initial: "1", md: "2" }} gap="5">
-			<Flex direction="column">
-				<Heading size="4" mb="2" align={{ initial: "center", md: "left" }}>
-					Yet another{" "}
-					<Link href={`${gitRepoUrl}`} target="_blank">
-						github-template repo
-					</Link>
-					.
-				</Heading>
-				<Text weight="light" size="2" align={{ initial: "center", md: "left" }}>
-					There are many like it, but this one is mine.
-				</Text>
-				<Separator orientation="horizontal" size="4" my="5" />⠀
-			</Flex>
-			<Flex direction="column">
-				<Text mb="5" align={{ initial: "center", md: "left" }}>
-					If you're curious, here's what's in the current{" "}
-					<Link href={`${gitRepoUrl}/blob/main/package.json`}>
-						package.json
-					</Link>
-				</Text>
+    const buildPackageDetail = (title: string, value: string | ReactNode) => (
+        <Flex direction="column" className={styles.detail}>
+            <Text size="1" weight="light" align={{ initial: "center" }}>
+                {title}
+            </Text>
+            <Text size="1" weight="bold" align={{ initial: "center" }}>
+                {value}
+            </Text>
+        </Flex>
+    );
 
-				<Grid columns="2" gap="7">
-					{buildTable("dependencies", deps)}
-					{buildTable("devDependencies", devDeps)}
-				</Grid>
-			</Flex>
-		</Grid>
-	);
+    return (
+        <Flex direction="column" px="4" py="4">
+            <Flex direction={{ initial: "column" }} align={{ initial: "center" }}>
+                {/* package.json [keywords]	*/}
+                <Flex
+                    gap={{ initial: "4" }}
+                    py="4"
+                    wrap={{ initial: "wrap", sm: "nowrap" }}
+                    justify={{ initial: "center" }}
+                >
+                    {tags}
+                </Flex>
+
+                {/* package.json [META]	*/}
+                <Flex
+                    direction="column"
+                    width="100%"
+                    height="5rem"
+                    mt="4"
+                    align={{ initial: "center" }}
+                >
+                    <Separator orientation="horizontal" size="4" decorative />
+                    <Flex className={styles.packageDetails}>
+                        {buildPackageDetail("last modified", last_updated_date)}
+                        <Separator
+                            orientation="vertical"
+                            size="4"
+                            mx={{ initial: "1" }}
+                            decorative
+                        />
+                        {buildPackageDetail("version", version)}
+                        <Separator
+                            orientation="vertical"
+                            size="4"
+                            mx={{ initial: "1" }}
+                            decorative
+                        />
+                        {buildPackageDetail("license", license)}
+                        <Separator
+                            orientation="vertical"
+                            size="4"
+                            mx={{ initial: "1" }}
+                            decorative
+                        />
+                        {buildPackageDetail("dependencies", deps.length.toString())}
+                    </Flex>
+                    <Separator orientation="horizontal" size="4" decorative />
+                </Flex>
+            </Flex>
+
+            <Flex direction={{ initial: "column" }} mt="4">
+                <Separator orientation="horizontal" size="4" decorative />
+                <Grid columns="4" gapX="4" className={styles.dependenciesLayout}>
+                    <Separator orientation="vertical" size="4" decorative />
+                    {buildTable("Dependencies", deps)}
+                    {buildTable("Dev-dependencies", devDeps)}
+                    <Separator orientation="vertical" size="4" decorative />
+                </Grid>
+                <Separator orientation="horizontal" size="4" decorative />
+            </Flex>
+
+            <Flex
+                direction="row-reverse"
+                my={{ initial: "6" }}
+                mx={{ initial: "4" }}
+                wrap="wrap"
+                gapX="8"
+            >
+                <Link href="https://www.nicholaswagner.dev" target="_blank">
+                    <BrandMark variant="chonky" height="3rem" />
+                </Link>
+            </Flex>
+        </Flex>
+    );
+
 };

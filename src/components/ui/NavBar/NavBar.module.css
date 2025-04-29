@@ -1,0 +1,10 @@
+.brand {
+	color: var(--gray-7);
+	/* transition: color 400ms ease-out; */
+	height: 2rem;
+	width: auto;
+
+	&:hover {
+		color: var(--accent-9);
+	}
+}

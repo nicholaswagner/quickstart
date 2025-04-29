@@ -37,7 +37,6 @@
 
 # Yet Another Github Template Repo
 
-- [x] biome for linting
 - [x] radix-ui/themes for base components and theme engine
 - [x] react-three-fiber & drei + threejs for shiny
 - [x] lil-gui (basically Dat.gui v2) + types and working theme styles

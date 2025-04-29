@@ -1,0 +1,53 @@
+.Root {
+	all: unset;
+	width: 43px;
+	height: 26px;
+	background-color: var(--accent-track);
+	border-radius: 9999px;
+	position: relative;
+	/* color: var(--black-a12); */
+	/* transition: transform 400ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1) 2s; */
+	/* border-color 300ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1); */
+	cursor: pointer;
+	/* outline-offset: -2px; */
+	outline: 2px solid var(--accent-5);
+	
+	/* &:focus {  */
+		/* outline: 2px solid var(--accent-8); */
+	/* } */
+	
+	transition: 
+		background-color none,
+		color 10ms none;
+}
+
+.Thumb {
+	align-items: center;
+	border-radius: 9999px;
+	display: flex;
+	height: 24px;
+	justify-content: center;
+	width: 24px;
+	will-change: transform;
+	transition: transform 500ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1) 150ms;
+	outline-offset: -2px;
+	
+	&[data-state="checked"] {
+		svg { color: var(--accent-contrast);}
+		background-color: var(--accent-4);
+		outline: 2px solid var(--accent-track);
+		transform: translateX(18px);
+	}
+
+	&[data-state="unchecked"] {
+		svg { color: var(--accent-a11);	}
+		background-color: var(--accent-contrast);
+		outline: 2px solid var(--accent-track);
+		transform: translateX(1px);
+	}
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+}

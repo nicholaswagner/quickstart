@@ -1,5 +1,7 @@
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import viteReact from "@vitejs/plugin-react";
+import glsl from "vite-plugin-glsl";
+
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ mode }) => {
@@ -10,9 +12,11 @@ export default defineConfig(({ mode }) => {
 		build: {
 			outDir: "dist",
 		},
+		resolve: {tsconfigPaths: true},
 		plugins: [
-			TanStackRouterVite({ autoCodeSplitting: false }),
-			viteReact({ include: /\.(ts|md|json)$/ }),
+			glsl(),
+			tanstackRouter({ autoCodeSplitting: false }),
+			viteReact(),
 		],
 	};
 });

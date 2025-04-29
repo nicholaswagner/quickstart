@@ -1,15 +1,16 @@
 .LilContainer {
-	position: absolute;
+	position:absolute;
 	right: 0;
 	top: 6rem;
 	z-index: 9000;
 
 	* {
-		/* color: var(--accent-12); */
+		--widget-color: var(-accent-a11);
+		color: var(--accent-12);
 		--title-background-color: var(--accent-3);
 		--title-text-color: var(--accent-12);
 
-		--background-color: var(--accent-1);
+		--background-color: var(--accent-a3) !important;
 		--text-color: var(--accent-12);
 		--widget-color: var(--accent-3);
 
@@ -26,7 +27,8 @@
 		font-weight: inherit;
 		font-style: normal;
 		text-align: left;
-		--background-color: var(--accent-surface);
+		--background-color: var(--accent-1)!important;
+		/* var(--accent-surface); */
 		--text-color: var(--accent-12);
 		--title-background-color: var(--accent-3);
 		--title-text-color: var(--accent-12);

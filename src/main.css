@@ -1,30 +1,56 @@
+:root {
+	.radix-themes {
+		--cursor-button: pointer;
+		--cursor-checkbox: pointer;
+		--cursor-disabled: default;
+		--cursor-link: pointer;
+		--cursor-menu-item: pointer;
+		--cursor-radio: pointer;
+		--cursor-slider-thumb: grab;
+		--cursor-slider-thumb-active: grabbing;
+		--cursor-switch: pointer;
+	}
+}
+
+
+
+
 body {
 	margin: 0;
 	padding: 0;
 	opacity: 0;
-	transition: opacity 1.5s ease, color 1.6s ease;
-	animation: triggerTransition 1.6s ease forwards;
+	transition: 
+		all 400ms ease-in,
+		translate none;
+
+	/* transition: 
+		opacity 500ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1) 3s,
+		background-color 500ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1) 3s,
+		color 500ms linear(0, 0.029 0.8%, 0.13 1.8%, 0.908 7.2%, 1.051 9.1%, 1.112 11.2%, 1.116 12.2%, 1.106 13.4%, 1.007 19.5%, 0.987 23.1%, 1.001 35%, 1) 3s;
+	 */
+		animation: triggerTransition 1.6s ease-in forwards;
+	/* transition: opacity 1.5s ease, color 1.6s ease; */
 }
 
 .radix-themes {
 	margin: 0;
 	padding: 0;
-	transition: background-color 0.6s ease, color 0.6s ease;
+	/* transition: all 150ms ease-in 500ms; */
 }
+
 
 @keyframes triggerTransition {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
 }
 
-.nwLink {
-	color: var(--gray-8);
-	transition: color 0.4s ease;
-	&:hover {
-		color: var(--gray-12);
-	}
+
+
+.uppercase {
+	text-transform: uppercase;
 }

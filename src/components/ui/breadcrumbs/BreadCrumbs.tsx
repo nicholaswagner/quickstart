@@ -2,16 +2,14 @@ import { Link } from "@radix-ui/themes";
 import { useLocation } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
-import type { ComponentProps } from "react";
+import { type ComponentProps, Fragment } from "react";
 import styles from "./breadcrumbs.module.css";
 
 const CrumbPage = ({
-	key,
 	label,
 }: ComponentProps<"li"> & { label: string; href?: string }) => {
 	return (
 		<Link
-			key={key}
 			size="1"
 			weight="bold"
 			color="gray"
@@ -52,28 +50,19 @@ export const BreadCrumbs = () => {
 		const isLastItem = index === numPaths - 1;
 		const href = pathname.slice(0, pathname.indexOf(path) + path.length);
 		const crumb = (
-			<Link
-				key={`${href}`}
-				href={href}
-				size="1"
-				weight="bold"
-				className="rootlink" //{styles.link}
-			>
+			<Link href={href} size="1" weight="bold" className="rootlink">
 				{path}
 			</Link>
 		);
 
 		return (
-			<>
-				<li
-					key={`breadcrumb-${path}`}
-					data-slot={isLastItem ? "breadcrumb-page" : "breadcrum-item"}
-				>
+			<Fragment key={`breadcrumb-${path}`}>
+				<li data-slot={isLastItem ? "breadcrumb-page" : "breadcrum-item"}>
 					{!isLastItem && crumb}
 					{isLastItem && <CrumbPage key={`crumb-page-${path}`} label={path} />}
 				</li>
-				{index > 0 && index < numPaths - 1 && <CrumSeparator key={`${path}`} />}
-			</>
+				{index > 0 && index < numPaths - 1 && <CrumSeparator />}
+			</Fragment>
 		);
 	});
 
