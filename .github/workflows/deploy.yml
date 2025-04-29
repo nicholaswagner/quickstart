@@ -17,8 +17,6 @@ jobs:
             # Checkout the current repository which has markdown files / images etc
             - name: Checkout repository
               uses: actions/checkout@v4
-              with:
-                path: main
 
               # Install dependencies
             - name: Install dependencies
