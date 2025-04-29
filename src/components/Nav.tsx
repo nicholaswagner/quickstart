@@ -15,7 +15,13 @@ export const Nav = () => {
 	};
 
 	return (
-		<Flex direction="row" justify="between" align="center" gapX="6">
+		<Flex
+			direction="row"
+			justify="between"
+			align="center"
+			gapX="6"
+			px={{ initial: "5" }}
+		>
 			<Flex align="center" gap="6">
 				<ThemeToggle checked={isChecked} onCheckedChange={handleChecked} />
 				<BreadCrumbs />

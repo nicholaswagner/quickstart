@@ -1,7 +1,7 @@
 .LilContainer {
 	position: absolute;
 	right: 0;
-	top: 0;
+	top: 6rem;
 	z-index: 9000;
 
 	* {

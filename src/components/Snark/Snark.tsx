@@ -174,7 +174,11 @@ export const Snark = () => {
 				{tweakables.showSnark && (
 					<Flex className={styles.Hero}>
 						<Flex direction="column">
-							<Heading size="8" weight="bold">
+							<Heading
+								size={{ initial: "6", sm: "8", md: "9" }}
+								align={{ initial: "center", sm: "left" }}
+								weight="bold"
+							>
 								<mark>
 									“Code reviews aren’t for finding bugs. They’re for shared
 									suffering and slowly losing faith in your coworkers. ”

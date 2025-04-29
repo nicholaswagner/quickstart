@@ -40,20 +40,20 @@ export const PackageDetails = () => {
 	return (
 		<Grid columns={{ initial: "1", md: "2" }} gap="5">
 			<Flex direction="column">
-				<Heading size="4" mb="2">
+				<Heading size="4" mb="2" align={{ initial: "center", md: "left" }}>
 					Yet another{" "}
 					<Link href={`${gitRepoUrl}`} target="_blank">
 						github-template repo
 					</Link>
 					.
 				</Heading>
-				<Text weight="light" size="2">
+				<Text weight="light" size="2" align={{ initial: "center", md: "left" }}>
 					There are many like it, but this one is mine.
 				</Text>
 				<Separator orientation="horizontal" size="4" my="5" />⠀
 			</Flex>
 			<Flex direction="column">
-				<Text mb="5">
+				<Text mb="5" align={{ initial: "center", md: "left" }}>
 					If you're curious, here's what's in the current{" "}
 					<Link href={`${gitRepoUrl}/blob/main/package.json`}>
 						package.json

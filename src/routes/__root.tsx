@@ -10,7 +10,7 @@ export const Route = createRootRoute({
 function RootComponent() {
 	return (
 		<>
-			<Container size="3" p="9">
+			<Container size="3">
 				<Nav />
 				<Outlet />
 			</Container>
