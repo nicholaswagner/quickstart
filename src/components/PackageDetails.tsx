@@ -42,10 +42,7 @@ export const PackageDetails = () => {
 			<Flex direction="column">
 				<Heading size="4" mb="2">
 					Yet another{" "}
-					<Link
-						href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template"
-						target="_blank"
-					>
+					<Link href={`${gitRepoUrl}`} target="_blank">
 						github-template repo
 					</Link>
 					.

@@ -46,9 +46,9 @@
     - [x] import and use `basepath` from `import.meta.env.BASE_URL` So this can be used 
     by both github repo and github user pages when served behind the same TLD
     - [x] include a quick and dirty breadcrumbs component [works](/path/to/whatever/and/things)
+- [x] include github workflow to auto deploy to github pages
 - [ ] decide on either going full css modules or use vanilla-extract
     - [ ] if modules, then look at including UnoCSS
-- [ ] include github workflow to auto deploy to github pages
 - [ ] add notes for how to configure for github-pages when user-page vs repo-page when hosted under the same TLD
 ---
 
