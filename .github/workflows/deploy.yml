@@ -28,7 +28,7 @@ jobs:
               env:
                   VITE_BASE_URL: /quickstart/
               working-directory: ${{ github.workspace }}
-              run: npm run build:github-pages
+              run: npm run build:gh-pages
 
             # disable jekyll
             - name: Disable Jekyll on GitHub Pages
