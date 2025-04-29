@@ -1,9 +1,11 @@
 {
-	"name": "bootstrap",
+	"name": "quickstart",
 	"private": true,
 	"version": "0.1.0",
 	"author": "nicholaswagner",
 	"type": "module",
+	"config": {},
+	"homepage": "https://github.com/nicholaswagner/quickstart",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/nicholaswagner/quickstart.git"
@@ -12,7 +14,7 @@
 		"check": "tsc --noEmit",
 		"dev": "vite",
 		"build": "tsc --noEmit && vite build",
-		"build:gh-pages": "vite build && cp dist/index.html dist/404.html",
+		"build:gh-pages": "tsc --noEmit && vite build && cp dist/index.html dist/404.html",
 		"preview": "vite preview"
 	},
 	"dependencies": {
@@ -22,6 +24,7 @@
 		"@tanstack/react-router-devtools": "^1.117.0",
 		"@types/node": "^22.15.3",
 		"@types/three": "^0.176.0",
+		"clsx": "^2.1.1",
 		"lil-gui": "^0.20.0",
 		"lucide-react": "^0.503.0",
 		"react": "^19.1.0",
@@ -38,6 +41,8 @@
 		"@vitejs/plugin-react": "^4.3.4",
 		"globals": "^16.0.0",
 		"typescript": "^5.8.3",
-		"vite": "^6.3.2"
+		"vite": "^6.3.2",
+		"vite-plugin-glsl": "^1.4.1",
+		"vite-tsconfig-paths": "^5.1.4"
 	}
 }

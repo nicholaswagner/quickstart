@@ -9,11 +9,10 @@ import {
 	Text,
 } from "@radix-ui/themes";
 
-import { dependencies, devDependencies, repository } from "../../package.json";
+import { dependencies, devDependencies, homepage } from "../../package.json";
 
 const deps = Object.keys(dependencies);
 const devDeps = Object.keys(devDependencies);
-const gitRepoUrl = repository.url.slice(4).replace(".git", "");
 
 export const PackageDetails = () => {
 	const buildTable = (title: string, data: string[]) => (
@@ -42,7 +41,7 @@ export const PackageDetails = () => {
 			<Flex direction="column">
 				<Heading size="4" mb="2" align={{ initial: "center", md: "left" }}>
 					Yet another{" "}
-					<Link href={`${gitRepoUrl}`} target="_blank">
+					<Link href={`${homepage}`} target="_blank">
 						github-template repo
 					</Link>
 					.
@@ -53,11 +52,9 @@ export const PackageDetails = () => {
 				<Separator orientation="horizontal" size="4" my="5" />⠀
 			</Flex>
 			<Flex direction="column">
-				<Text mb="5" align={{ initial: "center", md: "left" }}>
+				<Text mb="8" align={{ initial: "center", md: "left" }}>
 					If you're curious, here's what's in the current{" "}
-					<Link href={`${gitRepoUrl}/blob/main/package.json`}>
-						package.json
-					</Link>
+					<Link href={`${homepage}/blob/main/package.json`}>package.json</Link>
 				</Text>
 
 				<Grid columns="2" gap="7">

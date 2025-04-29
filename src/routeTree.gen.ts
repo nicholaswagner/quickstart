@@ -11,25 +11,52 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as SplatImport } from './routes/$'
+import { Route as Import } from './routes/_'
+import { Route as TemplatesSplatImport } from './routes/templates/$'
+import { Route as SplatImport } from './routes/_.$'
 
 // Create/Update Routes
+
+const Route = Import.update({
+  id: '/_',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TemplatesSplatRoute = TemplatesSplatImport.update({
+  id: '/templates/$',
+  path: '/templates/$',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SplatRoute = SplatImport.update({
   id: '/$',
   path: '/$',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => Route,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/$': {
-      id: '/$'
+    '/_': {
+      id: '/_'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof Import
+      parentRoute: typeof rootRoute
+    }
+    '/_/$': {
+      id: '/_/$'
       path: '/$'
       fullPath: '/$'
       preLoaderRoute: typeof SplatImport
+      parentRoute: typeof rootRoute
+    }
+    '/templates/$': {
+      id: '/templates/$'
+      path: '/templates/$'
+      fullPath: '/templates/$'
+      preLoaderRoute: typeof TemplatesSplatImport
       parentRoute: typeof rootRoute
     }
   }
@@ -37,34 +64,52 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface RouteChildren {
+  SplatRoute: typeof SplatRoute
+}
+
+const RouteChildren: RouteChildren = {
+  SplatRoute: SplatRoute,
+}
+
+const RouteWithChildren = Route._addFileChildren(RouteChildren)
+
 export interface FileRoutesByFullPath {
+  '': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
 }
 
 export interface FileRoutesByTo {
+  '': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/$': typeof SplatRoute
+  '/_': typeof RouteWithChildren
+  '/_/$': typeof SplatRoute
+  '/templates/$': typeof TemplatesSplatRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/$'
+  fullPaths: '' | '/$' | '/templates/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/$'
-  id: '__root__' | '/$'
+  to: '' | '/$' | '/templates/$'
+  id: '__root__' | '/_' | '/_/$' | '/templates/$'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  SplatRoute: typeof SplatRoute
+  Route: typeof RouteWithChildren
+  TemplatesSplatRoute: typeof TemplatesSplatRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  SplatRoute: SplatRoute,
+  Route: RouteWithChildren,
+  TemplatesSplatRoute: TemplatesSplatRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +122,22 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/$"
+        "/_",
+        "/templates/$"
       ]
     },
-    "/$": {
-      "filePath": "$.tsx"
+    "/_": {
+      "filePath": "_.tsx",
+      "children": [
+        "/_/$"
+      ]
+    },
+    "/_/$": {
+      "filePath": "_.$.tsx",
+      "parent": "/_"
+    },
+    "/templates/$": {
+      "filePath": "templates/$.tsx"
     }
   }
 }

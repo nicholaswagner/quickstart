@@ -1,6 +1,7 @@
 import { Flex, Heading } from "@radix-ui/themes";
 import { AsciiRenderer } from "@react-three/drei";
 import { Canvas, type ThreeElements, useFrame } from "@react-three/fiber";
+import { useLocation } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Mesh } from "three";
 import { debounce } from "../../utils/debounce";
@@ -8,6 +9,9 @@ import { useLilGui } from "../ui/lil-gui-provider/LilGuiProvider";
 import styles from "./snark.module.css";
 
 export const Snark = () => {
+	const location = useLocation();
+	const devToolsEnabled = location.searchStr.includes("devtools");
+
 	const [tweakables, setTweakables] = useState({
 		showSnark: true,
 		color: "#ffffff",
@@ -30,7 +34,7 @@ export const Snark = () => {
 		[],
 	);
 
-	const { gui } = useLilGui();
+	const { gui } = devToolsEnabled ? useLilGui() : { gui: null };
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <No need, this is for debugging>
 	useEffect(() => {
