@@ -9,10 +9,11 @@ import {
 	Text,
 } from "@radix-ui/themes";
 
-import { dependencies, devDependencies } from "../../package.json";
+import { dependencies, devDependencies, repository } from "../../package.json";
 
 const deps = Object.keys(dependencies);
 const devDeps = Object.keys(devDependencies);
+const gitRepoUrl = repository.url.slice(4).replace(".git", "");
 
 export const PackageDetails = () => {
 	const buildTable = (title: string, data: string[]) => (
@@ -57,7 +58,9 @@ export const PackageDetails = () => {
 			<Flex direction="column">
 				<Text mb="5">
 					If you're curious, here's what's in the current{" "}
-					<Link href="./blob/main/package.json">package.json</Link>
+					<Link href={`${gitRepoUrl}/blob/main/package.json`}>
+						package.json
+					</Link>
 				</Text>
 
 				<Grid columns="2" gap="7">

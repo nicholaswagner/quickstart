@@ -4,6 +4,10 @@
 	"version": "0.1.0",
 	"author": "nicholaswagner",
 	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nicholaswagner/quickstart.git"
+	},
 	"scripts": {
 		"check": "tsc --noEmit",
 		"dev": "vite",
