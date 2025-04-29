@@ -49,5 +49,6 @@
 - [ ] decide on either going full css modules or use vanilla-extract
     - [ ] if modules, then look at including UnoCSS
 - [ ] include github workflow to auto deploy to github pages
+- [ ] add notes for how to configure for github-pages when user-page vs repo-page when hosted under the same TLD
 ---
 
