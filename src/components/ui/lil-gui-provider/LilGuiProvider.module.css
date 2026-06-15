@@ -5,7 +5,7 @@
 	z-index: 9000;
 
 	* {
-		--widget-color: var(-accent-a11);
+		--widget-color: var(--accent-a11);
 		color: var(--accent-12);
 		--title-background-color: var(--accent-3);
 		--title-text-color: var(--accent-12);
