@@ -3,7 +3,7 @@ import { useLocation } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
 import { type ComponentProps, Fragment } from "react";
-import styles from "./breadcrumbs.module.css";
+import styles from "./Breadcrumbs.module.css";
 
 const CrumbPage = ({
 	label,
@@ -23,7 +23,7 @@ const CrumbPage = ({
 	);
 };
 
-const CrumSeparator = ({
+const CrumbSeparator = ({
 	children,
 	className,
 	...props
@@ -42,7 +42,7 @@ const CrumSeparator = ({
 	);
 };
 
-export const BreadCrumbs = () => {
+export const Breadcrumbs = () => {
 	const { pathname } = useLocation();
 	const paths = pathname === "/" ? ["index"] : pathname.split("/");
 	const numPaths = paths.length;
@@ -57,11 +57,11 @@ export const BreadCrumbs = () => {
 
 		return (
 			<Fragment key={`breadcrumb-${path}`}>
-				<li data-slot={isLastItem ? "breadcrumb-page" : "breadcrum-item"}>
+				<li data-slot={isLastItem ? "breadcrumb-page" : "breadcrumb-item"}>
 					{!isLastItem && crumb}
 					{isLastItem && <CrumbPage key={`crumb-page-${path}`} label={path} />}
 				</li>
-				{index > 0 && index < numPaths - 1 && <CrumSeparator />}
+				{index > 0 && index < numPaths - 1 && <CrumbSeparator />}
 			</Fragment>
 		);
 	});

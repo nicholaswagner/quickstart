@@ -18,7 +18,7 @@
 	animation: triggerTransition 1.25s ease 0.5s forwards;
 }
 
-.Hero {
+.hero {
 	display:flex;
 	position:absolute;
 	top: 0;

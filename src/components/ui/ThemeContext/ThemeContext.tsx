@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type ThemeMode = "light" | "dark";
 
-interface ThemeContextInterface {
+interface ThemeContextValue {
     theme: ThemeMode;
     themeProps: ThemeProps;
     accentColor: AccentColor;
@@ -48,7 +48,7 @@ export type AccentColor = (typeof accentColors)[number];
 const randomAccent = (): AccentColor =>
     accentColors[Math.floor(Math.random() * accentColors.length)];
 
-const ThemeContext = createContext<ThemeContextInterface | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 interface ThemeProviderProps {
     children: ReactNode;
@@ -113,7 +113,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     );
 };
 
-export const useTheme = (): ThemeContextInterface => {
+export const useTheme = (): ThemeContextValue => {
     const context = useContext(ThemeContext);
     if (!context) throw new Error("useTheme must be used within ThemeProvider");
     return context;

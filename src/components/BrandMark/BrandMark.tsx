@@ -1,13 +1,13 @@
 import type { CSSProperties, SVGProps } from "react";
 
-type variantPropType = { variant?: "medium" | "heavy" | "chonky" };
+type BrandMarkVariantProps = { variant?: "medium" | "heavy" | "chonky" };
 
 export const BrandMark = ({
   style,
   className,
   variant = "chonky",
   ...rest
-}: SVGProps<SVGSVGElement> & variantPropType) => {
+}: SVGProps<SVGSVGElement> & BrandMarkVariantProps) => {
   const mergedStyles = {
     transformOrigin: "top left",
     ...style,

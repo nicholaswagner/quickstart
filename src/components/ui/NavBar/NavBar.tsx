@@ -1,9 +1,9 @@
 import { Flex, Link } from "@radix-ui/themes";
 
-import { BrandMark } from "../../Brandmark";
-import { BreadCrumbs } from "../breadcrumbs/BreadCrumbs";
-import { DevToolsToggle } from "../devtools-toggle/DevToolsToggle";
-import { ThemeToggle } from "../theme-toggle/ThemeToggle";
+import { BrandMark } from "../../BrandMark/BrandMark";
+import { Breadcrumbs } from "../Breadcrumbs/Breadcrumbs";
+import { DevToolsToggle } from "../DevToolsToggle/DevToolsToggle";
+import { ThemeToggle } from "../ThemeToggle/ThemeToggle";
 import styles from "./NavBar.module.css";
 
 export const NavBar = () => (
@@ -13,7 +13,7 @@ export const NavBar = () => (
                 <BrandMark variant="chonky" className={styles.brand} />
             </Link>
 
-            <BreadCrumbs />
+            <Breadcrumbs />
         </Flex>
 
         <Flex align="center" gap="4">

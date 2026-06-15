@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLilGui } from "../lil-gui-provider/LilGuiProvider";
+import { useLilGui } from "../LilGuiProvider/LilGuiProvider";
 import { type AccentColor, useTheme } from "../ThemeContext/ThemeContext";
 
 // Registers a "Theme" folder in lil-gui (shown when `?showGui` is active) so the

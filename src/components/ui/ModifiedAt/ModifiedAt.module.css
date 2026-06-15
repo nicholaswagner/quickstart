@@ -8,4 +8,5 @@
   padding: .5em;
   text-transform: uppercase;
   width: min-content;
+  user-select: none; 
 }

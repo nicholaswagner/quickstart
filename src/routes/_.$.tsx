@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { About } from "../components/About/About";
 import { Description } from "../components/Description/Description";
-import { PackageDetails } from "../components/PackageDetails";
+import { PackageDetails } from "../components/PackageDetails/PackageDetails";
 
 export const Route = createFileRoute("/_/$")({
     component: RouteComponent,

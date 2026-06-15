@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { RippleField } from "../../components/page-templates/RippleField";
+import { RippleField } from "../../components/PageTemplates/RippleField";
 
 export const Route = createFileRoute("/templates/$")({
 	component: RouteComponent,

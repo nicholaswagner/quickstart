@@ -8,13 +8,13 @@ import {
     devDependencies,
     license,
     version,
-} from "../../package.json";
-import { BrandMark } from "./Brandmark";
+} from "../../../package.json";
+import { BrandMark } from "../BrandMark/BrandMark";
 import styles from "./PackageDetails.module.css";
 const deps = Object.keys(dependencies);
 const devDeps = Object.keys(devDependencies);
-const last_updated = config.last_modified;
-const last_updated_date = new Date(last_updated * 1000).toLocaleDateString();
+const lastModified = config.last_modified;
+const lastModifiedDate = new Date(lastModified * 1000).toLocaleDateString();
 
 const tags = keywords.map((k) => (
     <Badge key={k} radius="none" className={styles.tag} size="3">
@@ -82,7 +82,7 @@ export const PackageDetails = () => {
                 >
                     <Separator orientation="horizontal" size="4" decorative />
                     <Flex className={styles.packageDetails}>
-                        {buildPackageDetail("last modified", last_updated_date)}
+                        {buildPackageDetail("last modified", lastModifiedDate)}
                         <Separator
                             orientation="vertical"
                             size="4"

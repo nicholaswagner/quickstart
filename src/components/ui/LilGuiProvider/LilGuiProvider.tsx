@@ -3,12 +3,12 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import styles from "./LilGuiProvider.module.css";
 
-interface lilContext {
+interface LilGuiContextValue {
 	gui: GUI | null;
 	container: HTMLDivElement | null;
 }
 
-export const LilGuiContext = createContext<lilContext | undefined>({
+export const LilGuiContext = createContext<LilGuiContextValue | undefined>({
 	container: null,
 	gui: null,
 });
@@ -24,7 +24,9 @@ export const LilGuiProvider = ({
 }: LilGuiProviderProps) => {
 	const divRef = useRef<HTMLDivElement | null>(null);
 	const guiRef = useRef<GUI | null>(null);
-	const [gui, setGui] = useState<GUI | null>(null);
+	// state is write-only: setting it forces a re-render once the GUI mounts so
+	// consumers pick up `guiRef.current`; the value itself is never read here.
+	const [_gui, setGui] = useState<GUI | null>(null);
 
 	useEffect(() => {
 		if (divRef.current && !guiRef.current) {
@@ -48,13 +50,13 @@ export const LilGuiProvider = ({
 
 	return (
 		<LilGuiContext.Provider value={context}>
-			<div className={styles.LilContainer} id={id} ref={divRef} />
+			<div className={styles.lilContainer} id={id} ref={divRef} />
 			{children}
 		</LilGuiContext.Provider>
 	);
 };
 
-export const useLilGui = (): lilContext => {
+export const useLilGui = (): LilGuiContextValue => {
 	const context = useContext(LilGuiContext);
 	if (!context) throw new Error();
 	return context;

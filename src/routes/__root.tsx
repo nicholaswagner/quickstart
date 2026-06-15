@@ -1,8 +1,8 @@
 import { Outlet, createRootRoute, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { useEffect, useState } from "react";
-import { LilGuiProvider } from "../components/ui/lil-gui-provider/LilGuiProvider";
-import { ThemePicker } from "../components/ui/theme-toggle/ThemePicker";
+import { LilGuiProvider } from "../components/ui/LilGuiProvider/LilGuiProvider";
+import { ThemePicker } from "../components/ui/ThemeToggle/ThemePicker";
 
 export const Route = createRootRoute({
 	component: RootComponent,

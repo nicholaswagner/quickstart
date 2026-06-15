@@ -1,4 +1,5 @@
 .about {
+  user-select: none;
   background: 
   radial-gradient(300% 300% at 30% 20%, var(--gray-3), transparent 70%),
   linear-gradient(0deg,var(--accent-3) 0%, var(--gray-3) 100%);

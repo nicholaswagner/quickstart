@@ -9,7 +9,7 @@ import {
     Object3D,
 } from "three";
 
-import { useLilGui } from "../ui/lil-gui-provider/LilGuiProvider";
+import { useLilGui } from "../ui/LilGuiProvider/LilGuiProvider";
 import styles from "./RippleField.module.css";
 
 const GRID = 44; // GRID x GRID instanced nodes

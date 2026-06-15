@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import type { Mesh } from "three";
 
 export const FullscreenDemo = () => {
-	const [tweakables, setTweakables] = useState({
+	const [tweakables] = useState({
 		showSnark: true,
 		color: "#ffffff",
 		rotationSpeedX: 0.5,
@@ -21,7 +21,7 @@ export const FullscreenDemo = () => {
 
 	// didn't bother copying over all the lil-gui setup from the <Snark/> component... its there if you want it
 
-	function Torusknot(_props: ThreeElements["mesh"]) {
+	function TorusKnot(_props: ThreeElements["mesh"]) {
 		const meshRef = useRef<Mesh | null>(null);
 		useFrame((_state, delta) => {
 			if (!meshRef.current) return;
@@ -51,8 +51,8 @@ export const FullscreenDemo = () => {
 			/>
 			<pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
 			<color attach="background" args={["blue"]} />
-			<Torusknot />
-			<Torusknot />
+			<TorusKnot />
+			<TorusKnot />
 			{tweakables.showAscii && (
 				<AsciiRenderer
 					renderIndex={1}

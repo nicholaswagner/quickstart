@@ -1,11 +1,11 @@
-import { Flex, Heading, FlexProps } from "@radix-ui/themes";
+import { Flex, FlexProps } from "@radix-ui/themes";
 import { AsciiRenderer } from "@react-three/drei";
 import { Canvas, type ThreeElements, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Mesh } from "three";
 
 import { debounce } from "../../utils/debounce";
-import { useLilGui } from "../ui/lil-gui-provider/LilGuiProvider";
+import { useLilGui } from "../ui/LilGuiProvider/LilGuiProvider";
 import styles from "./Snark.module.css";
 
 export const Snark = (props?: FlexProps) => {
@@ -123,7 +123,7 @@ export const Snark = (props?: FlexProps) => {
         };
     }, [gui]);
 
-    function Torusknot(_props: ThreeElements["mesh"]) {
+    function TorusKnot(_props: ThreeElements["mesh"]) {
         const meshRef = useRef<Mesh | null>(null);
 
         useFrame((_state, delta) => {
@@ -154,8 +154,8 @@ export const Snark = (props?: FlexProps) => {
                     />
                     <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
                     <color attach="background" args={["black"]} />
-                    <Torusknot />
-                    <Torusknot />
+                    <TorusKnot />
+                    <TorusKnot />
                     {tweakables.showAscii && (
                         <AsciiRenderer
                             renderIndex={1}
@@ -167,7 +167,7 @@ export const Snark = (props?: FlexProps) => {
                     )}
                 </Canvas>
                 {/* {tweakables.showSnark && (
-                    <Flex className={styles.Hero}>
+                    <Flex className={styles.hero}>
                         <Flex direction="row">
                             <Heading
                                 size={{ initial: "6", sm: "8", md: "9" }}

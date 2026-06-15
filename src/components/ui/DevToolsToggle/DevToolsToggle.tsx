@@ -39,7 +39,7 @@ export const DevToolsToggle = () => {
 
     return (
         <Flex align="center" gap="3">
-            <Tooltip content={showGui ? "Hide lil-gui" : "Show lil-gui"}>
+            <Tooltip className={styles.tooltip} content={showGui ? "Hide lil-gui" : "Show lil-gui"}>
                 <IconButton
                     size="2"
                     variant={showGui ? "solid" : "soft"}
