@@ -23,10 +23,9 @@ jobs:
               working-directory: ${{ github.workspace }}
               run: npm ci
             
-              # Build the  app 
+              # Build the  app
+              # Base path is derived from package.json `name` in vite.config.ts
             - name: Build app
-              env:
-                  VITE_BASE_URL: /quickstart/
               working-directory: ${{ github.workspace }}
               run: npm run build:gh-pages
 

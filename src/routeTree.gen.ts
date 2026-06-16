@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RouteImport } from './routes/_'
 import { Route as TemplatesSplatRouteImport } from './routes/templates/$'
 import { Route as QueryRouteImport } from './routes/_.query'
+import { Route as ArticleRouteImport } from './routes/_.article'
 import { Route as SplatRouteImport } from './routes/_.$'
 
 const Route = RouteImport.update({
@@ -28,6 +29,11 @@ const QueryRoute = QueryRouteImport.update({
   path: '/query',
   getParentRoute: () => Route,
 } as any)
+const ArticleRoute = ArticleRouteImport.update({
+  id: '/article',
+  path: '/article',
+  getParentRoute: () => Route,
+} as any)
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
@@ -37,12 +43,14 @@ const SplatRoute = SplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/article': typeof ArticleRoute
   '/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/article': typeof ArticleRoute
   '/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
@@ -50,15 +58,16 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_': typeof RouteWithChildren
   '/_/$': typeof SplatRoute
+  '/_/article': typeof ArticleRoute
   '/_/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/query' | '/templates/$'
+  fullPaths: '/' | '/$' | '/article' | '/query' | '/templates/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/query' | '/templates/$'
-  id: '__root__' | '/_' | '/_/$' | '/_/query' | '/templates/$'
+  to: '/' | '/$' | '/article' | '/query' | '/templates/$'
+  id: '__root__' | '/_' | '/_/$' | '/_/article' | '/_/query' | '/templates/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -89,6 +98,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QueryRouteImport
       parentRoute: typeof Route
     }
+    '/_/article': {
+      id: '/_/article'
+      path: '/article'
+      fullPath: '/article'
+      preLoaderRoute: typeof ArticleRouteImport
+      parentRoute: typeof Route
+    }
     '/_/$': {
       id: '/_/$'
       path: '/$'
@@ -101,11 +117,13 @@ declare module '@tanstack/react-router' {
 
 interface RouteChildren {
   SplatRoute: typeof SplatRoute
+  ArticleRoute: typeof ArticleRoute
   QueryRoute: typeof QueryRoute
 }
 
 const RouteChildren: RouteChildren = {
   SplatRoute: SplatRoute,
+  ArticleRoute: ArticleRoute,
   QueryRoute: QueryRoute,
 }
 
