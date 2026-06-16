@@ -38,8 +38,11 @@ function RootComponent() {
 	if (showDev) {
 		result = (
 			<>
-				<TanStackRouterDevtools />
 				{result}
+				{/* render after content: the devtools reserves panel space via
+				    padding on its own wrapper, which would otherwise push the
+				    whole page down if it sat above the content */}
+				<TanStackRouterDevtools />
 			</>
 		);
 	}

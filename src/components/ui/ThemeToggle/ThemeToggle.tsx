@@ -8,8 +8,6 @@ import styles from "./ThemeToggle.module.css";
 
 type ThemeToggleProps = React.ComponentPropsWithoutRef<typeof Switch.Root>;
 
-// Reads the appearance directly from ThemeContext so the switch stays in sync
-// no matter what flips it — this toggle, or the lil-gui Theme picker.
 export const ThemeToggle = forwardRef<HTMLButtonElement, ThemeToggleProps>((props, ref) => {
     const { theme, setTheme } = useTheme();
     const playClick = useToggleSound();
@@ -22,9 +20,8 @@ export const ThemeToggle = forwardRef<HTMLButtonElement, ThemeToggleProps>((prop
     }, [themeChecked]);
 
     const handleCheckedChange = (nextChecked: boolean) => {
-        setChecked(nextChecked); // animate immediately
-        setTheme(nextChecked ? "dark" : "light"); // flip the theme right away
-        // play on press; the sound's own `offset` config delays it if you want
+        setChecked(nextChecked);
+        setTheme(nextChecked ? "dark" : "light");
         playClick(nextChecked);
     };
 
