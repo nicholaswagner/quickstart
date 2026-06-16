@@ -3,6 +3,7 @@ import { useLocation } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 
 import { type ComponentProps, Fragment } from "react";
+import { Link as RouterLink } from "../Link/Link";
 import styles from "./Breadcrumbs.module.css";
 
 const CrumbPage = ({
@@ -50,9 +51,9 @@ export const Breadcrumbs = () => {
 		const isLastItem = index === numPaths - 1;
 		const href = pathname.slice(0, pathname.indexOf(path) + path.length);
 		const crumb = (
-			<Link href={href} size="1" weight="bold" className="rootlink">
+			<RouterLink to={href} size="1" weight="bold" className="rootlink">
 				{path}
-			</Link>
+			</RouterLink>
 		);
 
 		return (

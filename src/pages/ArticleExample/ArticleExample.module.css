@@ -1,3 +1,8 @@
+/* Constrain the column to a comfortable reading measure (~65–68ch). */
+.page {
+	max-width: 68ch;
+}
+
 .title {
 	margin-bottom: 0;
 }
@@ -19,10 +24,6 @@
 	padding-left: var(--space-5);
 }
 
-.codeBlock {
-	font-family: var(--font-mono);
-}
-
 .pre {
 	margin: 0;
 	padding: var(--space-3);
@@ -33,7 +34,9 @@
 }
 
 .pre code {
+	font-family: var(--code-font-family);
 	font-size: var(--font-size-2);
 	line-height: var(--line-height-2);
 	color: var(--gray-12);
+	white-space: pre;
 }
