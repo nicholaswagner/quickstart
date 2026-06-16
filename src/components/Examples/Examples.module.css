@@ -1,0 +1,30 @@
+.cardLink {
+	display: block;
+	height: 100%;
+	text-decoration: none;
+	color: inherit;
+}
+
+.card {
+	height: 100%;
+	cursor: pointer;
+	transition:
+		transform 150ms ease,
+		box-shadow 150ms ease;
+}
+
+.cardLink:hover .card {
+	transform: translateY(-2px);
+}
+
+.arrow {
+	color: var(--gray-9);
+	transition:
+		transform 150ms ease,
+		color 150ms ease;
+}
+
+.cardLink:hover .arrow {
+	color: var(--accent-11);
+	transform: translate(2px, -2px);
+}

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RouteImport } from './routes/_'
 import { Route as TemplatesSplatRouteImport } from './routes/templates/$'
+import { Route as QueryRouteImport } from './routes/_.query'
 import { Route as SplatRouteImport } from './routes/_.$'
 
 const Route = RouteImport.update({
@@ -22,6 +23,11 @@ const TemplatesSplatRoute = TemplatesSplatRouteImport.update({
   path: '/templates/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QueryRoute = QueryRouteImport.update({
+  id: '/query',
+  path: '/query',
+  getParentRoute: () => Route,
+} as any)
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
@@ -31,25 +37,28 @@ const SplatRoute = SplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof RouteWithChildren
   '/$': typeof SplatRoute
+  '/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_': typeof RouteWithChildren
   '/_/$': typeof SplatRoute
+  '/_/query': typeof QueryRoute
   '/templates/$': typeof TemplatesSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$' | '/templates/$'
+  fullPaths: '/' | '/$' | '/query' | '/templates/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$' | '/templates/$'
-  id: '__root__' | '/_' | '/_/$' | '/templates/$'
+  to: '/' | '/$' | '/query' | '/templates/$'
+  id: '__root__' | '/_' | '/_/$' | '/_/query' | '/templates/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -73,6 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TemplatesSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_/query': {
+      id: '/_/query'
+      path: '/query'
+      fullPath: '/query'
+      preLoaderRoute: typeof QueryRouteImport
+      parentRoute: typeof Route
+    }
     '/_/$': {
       id: '/_/$'
       path: '/$'
@@ -85,10 +101,12 @@ declare module '@tanstack/react-router' {
 
 interface RouteChildren {
   SplatRoute: typeof SplatRoute
+  QueryRoute: typeof QueryRoute
 }
 
 const RouteChildren: RouteChildren = {
   SplatRoute: SplatRoute,
+  QueryRoute: QueryRoute,
 }
 
 const RouteWithChildren = Route._addFileChildren(RouteChildren)
